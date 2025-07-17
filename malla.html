@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Malla Obstetricia ULagos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff5f7;
+      color: #333;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #b71c1c;
+    }
+    .malla {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 16px;
+      padding: 10px;
+    }
+    .semestre {
+      min-width: 250px;
+      background: #ffe6e9;
+      border: 1px solid #ffb3b3;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .semestre h3 {
+      text-align: center;
+      color: #c2185b;
+    }
+    .ramo {
+      background: #ffffff;
+      border: 1px solid #ffcdd2;
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+    }
+    .ramo.aprobado {
+      background: #f8bbd0;
+      text-decoration: line-through;
+    }
+    .ramo.bloqueado {
+      background: #fce4ec;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .tooltip {
+      visibility: hidden;
+      background-color: #d81b60;
+      color: #fff;
+      text-align: center;
+      padding: 4px;
+      border-radius: 4px;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 100%;
+      margin-left: 5px;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+    .ramo:hover .tooltip {
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <h1>Malla Interactiva Obstetricia y Puericultura - ULagos</h1>
+  <div class="malla" id="malla"></div>
+
+  <script>
+    const ramos = [
+      { id: "comunicacion1", nombre: "Comunicación I", semestre: 1, prereq: [] },
+      { id: "fundamentos", nombre: "Fundamentos de la Salud Sexual y Reproductiva", semestre: 1, prereq: [] },
+      { id: "bases_biologicas", nombre: "Bases Biológicas en SSR", semestre: 1, prereq: [] },
+      { id: "bases_bioquimicas", nombre: "Bases Bioquímicas en SSR", semestre: 1, prereq: [] },
+      { id: "antropologia", nombre: "Antropología en SSR", semestre: 1, prereq: [] },
+      { id: "ciudadania1", nombre: "Ciudadanía I", semestre: 2, prereq: [] },
+      { id: "bioestadistica", nombre: "Bioestadística", semestre: 2, prereq: [] },
+      { id: "microbiologia", nombre: "Microbiología y Parasitología", semestre: 2, prereq: [] },
+      { id: "anatomia", nombre: "Anatomía", semestre: 2, prereq: [] },
+      { id: "fisiologia", nombre: "Fisiología e Histología", semestre: 2, prereq: ["bases_biologicas"] },
+      { id: "enfermeria_basica", nombre: "Enfermería Básica", semestre: 2, prereq: [] },
+      { id: "ufin2", nombre: "Electivo UFIN", semestre: 2, prereq: [] }
+    ];
+
+    const estado = JSON.parse(localStorage.getItem("malla_aprobadas") || "{}");
+    const contenedor = document.getElementById("malla");
+
+    for (let s = 1; s <= 10; s++) {
+      const columna = document.createElement("div");
+      columna.className = "semestre";
+      columna.innerHTML = `<h3>Semestre ${s}</h3>`;
+      ramos.filter(r => r.semestre === s).forEach(ramo => {
+        const div = document.createElement("div");
+        div.className = "ramo";
+        div.textContent = ramo.nombre;
+
+        const prereqList = typeof ramo.prereq === "function" ? ramo.prereq(ramos) : ramo.prereq;
+        const faltan = prereqList.filter(id => !estado[id]);
+        const aprobado = estado[ramo.id];
+
+        if (aprobado) div.classList.add("aprobado");
+        if (faltan.length > 0 && !aprobado) {
+          div.classList.add("bloqueado");
+          const tooltip = document.createElement("span");
+          tooltip.className = "tooltip";
+          tooltip.textContent = "Falta: " + faltan.map(id => ramos.find(r => r.id === id)?.nombre).join(", ");
+          div.appendChild(tooltip);
+        } else {
+          div.addEventListener("click", () => {
+            estado[ramo.id] = !estado[ramo.id];
+            localStorage.setItem("malla_aprobadas", JSON.stringify(estado));
+            location.reload();
+          });
+        }
+
+        columna.appendChild(div);
+      });
+      contenedor.appendChild(columna);
+    }
+  </script>
+</body>
+</html>
