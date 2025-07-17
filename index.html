@@ -135,23 +135,9 @@
       { id: "perinatal_pato", nombre: "Clínica Perinatal Patológica", semestre: 8, prereq: ["clinica_perinatal", "enfermeria", "proceso_ssr", "proceso_gineobs"] },
       { id: "electivo4", nombre: "Electivo Farmacología Aplicada", semestre: 8, prereq: [] },
 
-      { id: "internado1", nombre: "Internado I", semestre: 9, prereq: ["comunicacion1", "fund_salud", "biologicas_ssr", "bioquimicas_ssr", "antropologia",
-          "ciudadania1", "bioestadistica", "micro_parasito", "anatomia", "fisiologia_histologia",
-          "enfermeria_basica", "ufin1", "ingles1", "epidemiologia", "psicologia",
-          "fisiofarma", "fisiolog_gine", "proc_enf_ssr", "ingles2", "fisiolog_obsneon",
-          "patolog_gine", "salud_familiar", "proc_enf_gineobs", "ufin2", "ingles3",
-          "gestion_ssr", "patolog_obsneon", "educacion_ssr", "salud_aps", "ingles4",
-          "metodologia", "clinica_perinatal", "ufin3", "seminario", "clinica_onco",
-          "ufin4", "gestion_proyectos", "clinica_perinatal_patologica"] },
+      { id: "internado1", nombre: "Internado I", semestre: 9, prereq: ["ciudadania2", "perinatal_pato"] },
 
-      { id: "internado2", nombre: "Internado II", semestre: 10, prereq: [ "comunicacion1", "fund_salud", "biologicas_ssr", "bioquimicas_ssr", "antropologia",
-          "ciudadania1", "bioestadistica", "micro_parasito", "anatomia", "fisiologia_histologia",
-          "enfermeria_basica", "ufin1", "ingles1", "epidemiologia", "psicologia",
-          "fisiofarma", "fisiolog_gine", "proc_enf_ssr", "ingles2", "fisiolog_obsneon",
-          "patolog_gine", "salud_familiar", "proc_enf_gineobs", "ufin2", "ingles3",
-          "gestion_ssr", "patolog_obsneon", "educacion_ssr", "salud_aps", "ingles4",
-          "metodologia", "clinica_perinatal", "ufin3", "seminario", "clinica_onco",
-          "ufin4", "gestion_proyectos", "clinica_perinatal_patologica"] },
+      { id: "internado2", nombre: "Internado II", semestre: 10, prereq: ["internado1"] },
       { id: "electivo_final", nombre: "Electivo Especialización/Postgrado", semestre: 10, prereq: ["internado2"] }
     ];
 
