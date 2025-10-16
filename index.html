@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Malla Obstetricia - Universidad de Los Lagos</title>
+  <title>Malla Medicina Veterinaria - Universidad de Los Lagos</title>
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
-      background-color: #fff6f2;
+      background-color: ##98ff96;
       margin: 0;
       padding: 1rem;
       color: #333;
     }
     h1 {
       text-align: center;
-      color: #c0392b;
+      color: #009929;
     }
     .malla {
       display: flex;
@@ -37,10 +37,10 @@
     }
     .semestre h2 {
       text-align: center;
-      color: #d35400;
+      color: #bee0ca;
     }
     .ramo {
-      background-color: #fde3cf;
+      background-color: #7db894;
       margin: 0.5rem 0;
       padding: 0.5rem;
       border-radius: 4px;
@@ -82,7 +82,7 @@
   </style>
 </head>
 <body>
-  <h1>Malla Obstetricia y Puericultura - Universidad de Los Lagos</h1>
+  <h1>Malla Medicina Veterinaria- Universidad de Los Lagos</h1>
   <div class="malla">
     <div class="fila" id="fila-superior"></div>
     <div class="fila" id="fila-inferior"></div>
@@ -90,18 +90,18 @@
 
   <script>
     const ramos = [
-      { id: "comunicacion", nombre: "Comunicación I", semestre: 1, prereq: [] },
-      { id: "fundamentos", nombre: "Fundamentos de la Salud Sexual y Reproductiva", semestre: 1, prereq: [] },
-      { id: "biologicas", nombre: "Bases Biológicas en SSR", semestre: 1, prereq: [] },
-      { id: "bioquimica", nombre: "Bases Bioquímicas en SSR", semestre: 1, prereq: [] },
-      { id: "antropologia", nombre: "Antropología en SSR", semestre: 1, prereq: [] },
-      { id: "ciudadania1", nombre: "Ciudadanía I", semestre: 1, prereq: [] },
-      { id: "bioestadistica", nombre: "Bioestadística", semestre: 2, prereq: [] },
-      { id: "microbiologia", nombre: "Microbiología y Parasitología", semestre: 2, prereq: [] },
-      { id: "anatomia", nombre: "Anatomía", semestre: 2, prereq: [] },
-      { id: "fisiologia", nombre: "Fisiología e Histología", semestre: 2, prereq: [] },
-      { id: "enfermeria", nombre: "Enfermería Básica", semestre: 2, prereq: [] },
-        { id: "electivo1", nombre: "Electivo UFIN", semestre: 2, prereq: [] },
+      { id: "intro", nombre: "Introducción a las Ciencias Veterinarias", semestre: 1, prereq: [] },
+      { id: "zoo", nombre: "Zoología", semestre: 1, prereq: [] },
+      { id: "matematicas", nombre: "Matemáticas", semestre: 1, prereq: [] },
+      { id: "quimica", nombre: "Química Orgánica", semestre: 1, prereq: [] },
+      { id: "biocel", nombre: "Biología Celular", semestre: 1, prereq: [] },
+      { id: "comunicacion", nombre: "Comunicación", semestre: 1, prereq: [] },
+      { id: "ecologia", nombre: "Ecología", semestre: 2, prereq: [] },
+      { id: "anato", nombre: "Anatomía Animal I", semestre: 2, prereq: [] },
+      { id: "fisica", nombre: "Física", semestre: 2, prereq: [] },
+      { id: "bioquimica", nombre: "Bioquímica", semestre: 2, prereq: ["quimica", "bioce"]},
+      { id: "histo", nombre: "Histología y Embriología", semestre: 2, prereq: ["fisiologia"]},
+        { id: "ciudadania", nombre: "Ciudadanía para el buen vivir", semestre: 2, prereq: [] },
 
       { id: "ingles1", nombre: "Inglés I", semestre: 3, prereq: [] },
       { id: "epidemiologia", nombre: "Epidemiología", semestre: 3, prereq: [] },
@@ -183,3 +183,5 @@
   </script>
 </body>
 </html>
+
+
