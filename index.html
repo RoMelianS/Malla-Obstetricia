@@ -178,7 +178,7 @@
       cont.className = "semestre";
       cont.innerHTML = `<h2>Semestre ${s}</h2>`;
       ramos.filter(r => r.semestre === s).forEach(r => cont.appendChild(crearRamo(r)));
-      (s % 2 === 1 ? document.getElementById("fila-superior") : document.getElementById("fila-inferior")).appendChild(cont);
+     (s <= 5 ? document.getElementById("fila-superior") : document.getElementById("fila-inferior")).appendChild(cont);
     }
   </script>
 </body>
